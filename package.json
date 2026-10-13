@@ -1,0 +1,24 @@
+{
+  "name": "qa-cicd-practica",
+  "version": "1.0.0",
+  "description": "Practica de QA con Cypress, ramas y GitHub Actions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hdanielgonzalez24-blip/qa-cicd-practica.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/hdanielgonzalez24-blip/qa-cicd-practica/issues"
+  },
+  "homepage": "https://github.com/hdanielgonzalez24-blip/qa-cicd-practica#readme",
+  "devDependencies": {
+    "cypress": "^16.1.1"
+  }
+}
