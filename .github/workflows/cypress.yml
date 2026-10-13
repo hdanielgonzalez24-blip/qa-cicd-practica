@@ -1,0 +1,46 @@
+# Nombre del pipeline (se ve en la pestaña Actions de GitHub)
+name: Pruebas Cypress
+
+# Cuándo se ejecuta
+on:
+  push:
+    branches:
+      - main
+      - desarrollo
+      - "feature/**"     # cualquier rama que empiece con feature/
+  pull_request:
+    branches:
+      - main
+      - desarrollo
+
+jobs:
+  pruebas-e2e:
+    # Máquina virtual de Linux donde corren las pruebas
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Descargar el código del repo en el servidor
+      - name: Descargar codigo
+        uses: actions/checkout@v4
+
+      # 2. Instalar Node.js
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # 3. Instalar dependencias desde package-lock.json
+      - name: Instalar dependencias
+        run: npm ci
+
+      # 4. Correr las pruebas sin pantalla
+      - name: Correr pruebas de Cypress
+        run: npx cypress run
+
+      # 5. Si algo falla, guardar los screenshots como evidencia
+      - name: Guardar screenshots si fallan
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots-cypress
+          path: cypress/screenshots
